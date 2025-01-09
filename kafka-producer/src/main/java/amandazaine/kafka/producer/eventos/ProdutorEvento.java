@@ -17,13 +17,22 @@ public class ProdutorEvento {
         producer = criarProducer();
     }
 
+    //O Producer não pode ser criado várias vezes
+    //Esse método inicializa o Producer caso não tenha sido criado ainda
     private Producer<String, String> criarProducer() {
         if(producer != null){
             return producer;
         }
 
+        //Cria as propriedades de conexão
+        //A classe java.util.Properties lida com um conjunto de pares chave-valor do tipo Strings.
+        //É usada para gerenciar configurações e parâmetros de aplicativos, geralmente armazenados em arquivos de propriedades.
         Properties properties = new Properties();
+
+        //Informa quais são os servidores/brokers-de-mensagem Kafka
         properties.put("bootstrap.servers", "localhost:9092");
+
+
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("serializer.class", "kafka.serializer.DefaultEncoder");
@@ -31,6 +40,7 @@ public class ProdutorEvento {
         return new KafkaProducer<>(properties);
     }
 
+    //Esse método faz o envio da mensagem
     public void executar() {
         String chave = UUID.randomUUID().toString();
 
