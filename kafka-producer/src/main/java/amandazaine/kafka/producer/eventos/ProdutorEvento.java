@@ -25,13 +25,10 @@ public class ProdutorEvento {
         }
 
         //Cria as propriedades de conexão
-        //A classe java.util.Properties lida com um conjunto de pares chave-valor do tipo Strings.
-        //É usada para gerenciar configurações e parâmetros de aplicativos, geralmente armazenados em arquivos de propriedades.
         Properties properties = new Properties();
 
         //Informa quais são os servidores/brokers-de-mensagem Kafka
         properties.put("bootstrap.servers", "localhost:9092");
-
 
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
